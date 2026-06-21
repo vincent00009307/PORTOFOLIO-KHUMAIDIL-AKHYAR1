@@ -329,6 +329,41 @@ section{
     border-radius:18px;
 }
 
+.aurora{
+    position:fixed;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:.15;
+    z-index:-2;
+    animation:auroraMove 15s ease-in-out infinite;
+}
+
+.aurora1{
+    width:500px;
+    height:500px;
+    background:#6366f1;
+    top:-100px;
+    left:-100px;
+}
+
+.aurora2{
+    width:400px;
+    height:400px;
+    background:#8b5cf6;
+    bottom:-100px;
+    right:-100px;
+    animation-delay:5s;
+}
+
+.aurora3{
+    width:300px;
+    height:300px;
+    background:#ec4899;
+    top:50%;
+    left:50%;
+    animation-delay:10s;
+}
+
 .projects{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -378,6 +413,26 @@ section{
     border-radius:12px;
 }
 
+.spotlight{
+    position:fixed;
+    width:400px;
+    height:400px;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(99,102,241,.15),
+        transparent 70%
+    );
+
+    pointer-events:none;
+
+    transform:
+    translate(-50%,-50%);
+
+    z-index:-1;
+}
+
 footer{
     text-align:center;
     padding:30px;
@@ -412,6 +467,22 @@ nav ul{
     margin:auto;
 }
 
+
+
+@keyframes auroraMove{
+    0%{
+        transform:translate(0,0);
+    }
+
+    50%{
+        transform:translate(50px,-50px);
+    }
+
+    100%{
+        transform:translate(0,0);
+    }
+}
+
 .hero-content{
     text-align:center;
 }
@@ -421,10 +492,14 @@ nav ul{
 }
 
 }
+    
 </style>
 </head>
 <body>
-
+<div class="aurora aurora1"></div>
+<div class="aurora aurora2"></div>
+<div class="aurora aurora3"></div>
+<div class="spotlight"></div>
 <nav>
 <div class="container nav-content">
 <div class="logo">Portfolio.</div>
