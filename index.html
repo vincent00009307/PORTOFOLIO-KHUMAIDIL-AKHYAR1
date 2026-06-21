@@ -88,6 +88,10 @@ nav a{
 .about-image{
     flex-shrink:0;
 }
+
+.slide.active{
+    opacity:1;
+}
     
 .project:hover,
 .skill:hover,
@@ -324,6 +328,28 @@ nav a{
     padding:25px;
     border-radius:20px;
     text-align:center;
+}
+
+.slider-buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-top:20px;
+}
+
+.slider-buttons button{
+    width:45px;
+    height:45px;
+    border:none;
+    border-radius:50%;
+    background:#111;
+    color:white;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.slider-buttons button:hover{
+    background:#6366f1;
 }
 
 .stat h2{
@@ -838,6 +864,42 @@ spotlight.style.top =
 e.clientY + 'px';
 
 });
+const slides = document.querySelectorAll('.slide');
+let current = 0;
+
+function showSlide(index){
+
+    slides.forEach(slide=>{
+        slide.classList.remove('active');
+    });
+
+    slides[index].classList.add('active');
+}
+
+function nextSlide(){
+
+    current++;
+
+    if(current >= slides.length){
+        current = 0;
+    }
+
+    showSlide(current);
+}
+
+function prevSlide(){
+
+    current--;
+
+    if(current < 0){
+        current = slides.length - 1;
+    }
+
+    showSlide(current);
+}
+
+setInterval(nextSlide,5000);
+
 </script>
 </body>
 </html>
