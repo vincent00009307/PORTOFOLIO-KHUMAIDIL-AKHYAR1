@@ -1,0 +1,2 @@
+# PORTOFOLIO-KHUMAIDIL-AKHYAR1
+portofolio 
