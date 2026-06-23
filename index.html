@@ -1460,24 +1460,21 @@ function animate(){
 
 animate();
 
+setTimeout(()=>{
 
-let i = 0;
+    document
+    .querySelector(".loader-text")
+    .style.opacity = "1";
 
-const subtitle =
-document.querySelector(".loader-subtitle");
+},1800);
 
-setInterval(()=>{
+setTimeout(()=>{
 
-    if(i < texts.length){
+    document
+    .getElementById("loader")
+    .classList.add("loader-hide");
 
-        subtitle.innerHTML =
-        texts[i];
-
-        i++;
-
-    }
-
-},900);
+},4500);
 
 </script>
 </body>
