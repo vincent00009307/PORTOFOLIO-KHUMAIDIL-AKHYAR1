@@ -156,6 +156,158 @@ nav a{
         0 0 30px rgba(99,102,241,.25);
 }
 
+.floating-tech span{
+    position:fixed;
+
+    color:rgba(255,255,255,.06);
+
+    font-size:3rem;
+
+    pointer-events:none;
+
+    animation:
+    floatTech 20s linear infinite;
+}
+
+.floating-tech span:nth-child(1){
+    left:10%;
+}
+
+.floating-tech span:nth-child(2){
+    left:30%;
+}
+
+.floating-tech span:nth-child(3){
+    left:50%;
+}
+
+.floating-tech span:nth-child(4){
+    left:70%;
+}
+
+.floating-tech span:nth-child(5){
+    left:90%;
+}
+
+@keyframes floatTech{
+
+    from{
+        top:110%;
+    }
+
+    to{
+        top:-10%;
+    }
+
+}
+
+.rocket{
+    position:fixed;
+
+    font-size:40px;
+
+    top:20%;
+    left:-100px;
+
+    z-index:-1;
+
+    pointer-events:none;
+
+    animation:
+    flyRocket 18s linear infinite;
+}
+
+@keyframes flyRocket{
+
+    0%{
+        left:-100px;
+        top:70%;
+        transform:rotate(20deg);
+    }
+
+    100%{
+        left:110%;
+        top:10%;
+        transform:rotate(20deg);
+    }
+
+}
+
+.shooting-stars{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:-1;
+}
+
+.shooting-stars span{
+    position:absolute;
+    top:-100px;
+
+    width:2px;
+    height:120px;
+
+    background:
+    linear-gradient(
+        transparent,
+        rgba(255,255,255,.9)
+    );
+
+    border-radius:999px;
+
+    animation:shoot 8s linear infinite;
+}
+
+.shooting-stars span:nth-child(1){
+    left:10%;
+    animation-delay:0s;
+}
+
+.shooting-stars span:nth-child(2){
+    left:30%;
+    animation-delay:2s;
+}
+
+.shooting-stars span:nth-child(3){
+    left:55%;
+    animation-delay:4s;
+}
+
+.shooting-stars span:nth-child(4){
+    left:75%;
+    animation-delay:6s;
+}
+
+.shooting-stars span:nth-child(5){
+    left:90%;
+    animation-delay:8s;
+}
+
+@keyframes shoot{
+
+    0%{
+        transform:
+        translate(0,0)
+        rotate(45deg);
+
+        opacity:0;
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    100%{
+        transform:
+        translate(-700px,700px)
+        rotate(45deg);
+
+        opacity:0;
+    }
+
+}
+
 .slider{
     position:relative;
 
@@ -773,9 +925,26 @@ nav ul{
 <div class="aurora aurora2"></div>
 <div class="aurora aurora3"></div>
 <div class="spotlight"></div>
+<div class="shooting-stars">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
 <nav>
 <div class="container nav-content">
 <div class="logo">KIA.</div>
+<div class="rocket">
+    🚀
+</div>
+<div class="floating-tech">
+    <span>&lt;/&gt;</span>
+    <span>{ }</span>
+    <span>JS</span>
+    <span>PHP</span>
+    <span>⚡</span>
+</div>
 
 <ul>
 <li><a href="#about">Tentang</a></li>
