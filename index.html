@@ -94,6 +94,73 @@ nav a{
     inset:0;
 }
 
+.energy-ring{
+
+    position:absolute;
+
+    width:50px;
+    height:50px;
+
+    border:2px solid #8b5cf6;
+
+    border-radius:50%;
+
+    left:50%;
+    top:50%;
+
+    transform:
+    translate(-50%,-50%);
+
+    animation:
+    pulseRing 2s ease-out forwards;
+}
+
+@keyframes pulseRing{
+
+    from{
+        width:50px;
+        height:50px;
+        opacity:1;
+    }
+
+    to{
+        width:800px;
+        height:800px;
+        opacity:0;
+    }
+
+}
+
+.loader-text{
+
+    animation:
+    glitch 2s infinite;
+}
+
+@keyframes glitch{
+
+    0%,100%{
+        transform:translate(0);
+    }
+
+    20%{
+        transform:translate(-2px,2px);
+    }
+
+    40%{
+        transform:translate(2px,-2px);
+    }
+
+    60%{
+        transform:translate(-2px,0);
+    }
+
+    80%{
+        transform:translate(2px,0);
+    }
+
+}
+
 .loader-text{
     position:relative;
 
@@ -131,6 +198,34 @@ nav a{
     flex-shrink:0;
 }
 
+@keyframes screenShake{
+
+    0%,100%{
+        transform:translate(0);
+    }
+
+    20%{
+        transform:translate(-5px,3px);
+    }
+
+    40%{
+        transform:translate(5px,-3px);
+    }
+
+    60%{
+        transform:translate(-3px,2px);
+    }
+
+    80%{
+        transform:translate(3px,-2px);
+    }
+
+}
+
+.loader-shake{
+    animation:screenShake .5s ease;
+}
+
 .slide.active{
     opacity:1;
 }
@@ -154,6 +249,19 @@ nav a{
 
     box-shadow:
         0 0 30px rgba(99,102,241,.25);
+}
+
+.loader-subtitle{
+
+    margin-top:20px;
+
+    color:#8b5cf6;
+
+    letter-spacing:4px;
+
+    font-size:.9rem;
+
+    opacity:.7;
 }
 
 .floating-tech span{
@@ -917,9 +1025,13 @@ nav ul{
     <span></span>
     <span></span>
 </div>
+<div class="energy-ring"></div>
 <nav>
 <div class="container nav-content">
 <div class="logo">KIA.</div>
+<div class="loader-subtitle">
+    INITIALIZING PORTFOLIO...
+</div>
 
 <ul>
 <li><a href="#about">Tentang</a></li>
@@ -1314,6 +1426,10 @@ function explode(){
 
 explode();
 
+document
+.getElementById("loader")
+.classList.add("loader-shake");
+
 function animate(){
 
     ctx.clearRect(
@@ -1359,6 +1475,31 @@ setTimeout(()=>{
     .classList.add("loader-hide");
 
 },4500);
+
+const texts = [
+"INITIALIZING...",
+"LOADING PROJECTS...",
+"LOADING EXPERIENCE...",
+"ACCESS GRANTED"
+];
+
+let i = 0;
+
+const subtitle =
+document.querySelector(".loader-subtitle");
+
+setInterval(()=>{
+
+    if(i < texts.length){
+
+        subtitle.innerHTML =
+        texts[i];
+
+        i++;
+
+    }
+
+},900);
 
 </script>
 </body>
