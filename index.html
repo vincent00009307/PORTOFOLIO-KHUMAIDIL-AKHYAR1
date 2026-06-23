@@ -73,6 +73,48 @@ nav a{
     display:flex;
     align-items:center;
 }
+
+#loader{
+    position:fixed;
+    inset:0;
+    background:#050505;
+    z-index:999999;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    overflow:hidden;
+
+    transition:1.5s ease;
+}
+
+#particleCanvas{
+    position:absolute;
+    inset:0;
+}
+
+.loader-text{
+    position:relative;
+
+    font-size:6rem;
+    font-weight:800;
+
+    color:white;
+
+    opacity:0;
+
+    letter-spacing:10px;
+
+    text-shadow:
+    0 0 30px #8b5cf6,
+    0 0 60px #6366f1;
+}
+
+.loader-hide{
+    opacity:0;
+    visibility:hidden;
+}
     
 .about-wrapper{
     display:grid;
@@ -715,6 +757,18 @@ nav ul{
 </style>
 </head>
 <body>
+
+<div id="loader">
+
+    <canvas id="particleCanvas"></canvas>
+
+    <div class="loader-text">
+        KIA.
+    </div>
+
+</div>
+
+
 <div class="aurora aurora1"></div>
 <div class="aurora aurora2"></div>
 <div class="aurora aurora3"></div>
@@ -1026,6 +1080,142 @@ function prevSlide(){
 }
 
 setInterval(nextSlide,5000);
+
+<script>
+
+const canvas =
+document.getElementById("particleCanvas");
+
+const ctx =
+canvas.getContext("2d");
+
+canvas.width =
+window.innerWidth;
+
+canvas.height =
+window.innerHeight;
+
+let particles = [];
+
+const centerX =
+canvas.width / 2;
+
+const centerY =
+canvas.height / 2;
+
+class Particle{
+
+    constructor(){
+
+        this.x = centerX;
+        this.y = centerY;
+
+        const angle =
+        Math.random() * Math.PI * 2;
+
+        const speed =
+        Math.random() * 12 + 3;
+
+        this.vx =
+        Math.cos(angle) * speed;
+
+        this.vy =
+        Math.sin(angle) * speed;
+
+        this.size =
+        Math.random() * 3 + 1;
+
+        this.alpha = 1;
+    }
+
+    update(){
+
+        this.x += this.vx;
+
+        this.y += this.vy;
+
+        this.alpha -= 0.008;
+    }
+
+    draw(){
+
+        ctx.beginPath();
+
+        ctx.arc(
+            this.x,
+            this.y,
+            this.size,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fillStyle =
+        `rgba(139,92,246,${this.alpha})`;
+
+        ctx.fill();
+    }
+
+}
+
+function explode(){
+
+    for(let i=0;i<1500;i++){
+
+        particles.push(
+            new Particle()
+        );
+
+    }
+
+}
+
+explode();
+
+function animate(){
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+    particles.forEach((p,index)=>{
+
+        p.update();
+        p.draw();
+
+        if(p.alpha <= 0){
+
+            particles.splice(index,1);
+
+        }
+
+    });
+
+    requestAnimationFrame(
+        animate
+    );
+
+}
+
+animate();
+
+setTimeout(()=>{
+
+    document
+    .querySelector(".loader-text")
+    .style.opacity = "1";
+
+},1800);
+
+setTimeout(()=>{
+
+    document
+    .getElementById("loader")
+    .classList.add("loader-hide");
+
+},4500);
 
 </script>
 </body>
