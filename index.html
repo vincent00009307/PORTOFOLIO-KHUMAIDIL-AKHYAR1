@@ -239,13 +239,30 @@ nav a{
     0 10px 30px rgba(99,102,241,.15);
 }
 
-:root{
+.light-theme{
     --bg:#f7f8fc;
     --card:#ffffff;
     --text:#111827;
     --secondary:#6b7280;
     --accent:#4f46e5;
     --accent2:#7c3aed;
+}
+
+nav{
+    background:rgba(10,10,10,.7);
+}
+
+body.light-theme nav{
+    background:rgba(255,255,255,.8);
+    border-bottom:1px solid rgba(0,0,0,.05);
+}
+
+body.light-theme nav a{
+    color:#111827;
+}
+
+body.light-theme .logo{
+    color:#111827;
 }
 
 .card,
